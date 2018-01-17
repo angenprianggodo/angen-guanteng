@@ -1,0 +1,117 @@
+<div class="logo">
+    <a href="https://www.creative-tim.com" class="simple-text">
+        <div class="logo-img">
+            <img src="/assets/img/angular2-logo-red.png"/>
+        </div>
+        Creative Tim
+    </a>
+</div>
+<div class="sidebar-wrapper">
+    <form class="navbar-form navbar-right" role="search" *ngIf="isMobileMenu()">
+        <div class="form-group form-black is-empty">
+            <input type="text" class="form-control" placeholder="Search">
+            <span class="material-input"></span>
+        </div>
+        <button type="submit" class="btn btn-white btn-round btn-just-icon">
+            <i class="material-icons">search</i><div class="ripple-container"></div>
+        </button>
+    </form>
+
+    <ul class="nav nav-mobile-menu" *ngIf="isMobileMenu()">
+        <li>
+            <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
+                <i class="material-icons">dashboard</i>
+                <p class="hidden-lg hidden-md">Dashboard</p>
+            </a>
+        </li>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <i class="material-icons">notifications</i>
+                <span class="notification">5</span>
+                <p class="hidden-lg hidden-md">Notifications</p>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="#">Mike John responded to your email</a></li>
+                <li><a href="#">You have 5 new tasks</a></li>
+                <li><a href="#">You're now friend with Andrew</a></li>
+                <li><a href="#">Another Notification</a></li>
+                <li><a href="#">Another One</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
+               <i class="material-icons">person</i>
+               <p class="hidden-lg hidden-md">Profile</p>
+            </a>
+        </li>
+    </ul>
+
+    <div class="nav-container">
+        <ul class="nav nav-list">
+            <li *ngFor="let menuItem1 of menuItems; let idx1 = index;" [routerLinkActive] = "[menuItem1.type == 'link' ? 'active' : '']">
+                <a *ngIf="menuItem1.type == 'dropdown'" href="#subMenu1{{idx1}}" class="accordion-heading" data-toggle="collapse">
+                    <p>
+                        <span class="nav-header-primary">
+                            {{menuItem1.title}}
+                            <span *ngIf="menuItem1.submenu.length != 0">
+                                <span class="pull-right"><b class="caret"></b></span>
+                            </span>
+                        </span>
+                    </p>
+                </a>
+                <a *ngIf="menuItem1.type == 'link'" [routerLink]="[menuItem1.path]">
+                    <p>
+                        <span class="nav-header-primary">
+                            {{menuItem1.title}}
+                            <span *ngIf="menuItem1.submenu.length != 0">
+                                <span class="pull-right"><b class="caret"></b></span>
+                            </span>
+                        </span>
+                    </p>
+                </a>        
+                <span *ngIf="menuItem1.submenu.length != 0">
+                    <ul id="subMenu1{{idx1}}" class="nav nav-list collapse" style="padding-left:10px;">
+                        <li *ngFor="let menuItem2 of menuItem1.submenu; let idx2 = index;" [routerLinkActive] = "[menuItem2.type == 'link' ? 'active' : '']">
+                            <a *ngIf="menuItem2.type == 'dropdown'" href="#subMenu2{{idx1+''+idx2}}" class="accordion-heading" data-toggle="collapse">
+                                <p>
+                                    <span class="nav-header-primary">
+                                        {{menuItem2.title}}
+                                        <span *ngIf="menuItem2.submenu.length != 0">
+                                            <span class="pull-right"><b class="caret"></b></span>
+                                        </span>
+                                    </span>
+                                </p>
+                            </a>
+                            <a *ngIf="menuItem2.type == 'link'" [routerLink]="[menuItem2.path]" >
+                                <p>
+                                    <span class="nav-header-primary">
+                                        {{menuItem2.title}}
+                                        <span *ngIf="menuItem2.submenu.length != 0">
+                                            <span class="pull-right"><b class="caret"></b></span>
+                                        </span>
+                                    </span>
+                                </p>
+                            </a>
+                            <span *ngIf="menuItem2.submenu.length != 0">
+                                <ul class="nav nav-list collapse" id="subMenu2{{idx1+''+idx2}}" style="padding-left:20px;">
+                                    <li *ngFor="let menuItem3 of menuItem2.submenu;let idx3 = index;" [routerLinkActive] = "[menuItem3.type == 'link' ? 'active' : '']">
+                                        <a *ngIf="menuItem3.type == 'dropdown'" href="#subMenu3{{idx1+''+idx2+''+idx3}}" class="accordion-heading" data-toggle="collapse">
+                                            <p>
+                                                {{menuItem3.title}}
+                                            </p>
+                                        </a>
+                                        <a *ngIf="menuItem3.type == 'link'" [routerLink]="[menuItem3.path]">
+                                            <p>
+                                                {{menuItem3.title}}
+                                            </p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </span>
+                        </li>
+                    </ul>
+                </span>     
+            </li>
+        </ul> 
+    </div>
+</div>
